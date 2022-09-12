@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-     "image/png"
+    //  "image/png"
      "image/draw"
 	"image/color"
      "image/color/palette"
@@ -14,6 +14,7 @@ import (
      "image/gif"
      // "encoding/binary"
     "image"
+   // "image/jpeg"
     
     // "io"
    // "github.com/andybons/gogif"
@@ -24,7 +25,13 @@ import (
     "github.com/golang/freetype/truetype"
 )
 
-func g10c(path string)  {
+// func init() {
+//     // damn important or else At(), Bounds() functions will
+//     // caused memory pointer error!!
+//     image.RegisterFormat("jpeg", "jpeg", jpeg.Decode, jpeg.DecodeConfig)
+// }
+
+func g103d(path string)  {
 
 
 	rand.Seed(time.Now().UnixNano())
@@ -44,17 +51,18 @@ func g10c(path string)  {
     }
     defer catFile.Close()
  
-    imData, err := png.Decode(catFile)
-    if err != nil {
-        fmt.Println(err)
-    }
- 
-   
-    if err != nil {
-        log.Fatal(err)
-    }
+    // imData, err := png.Decode(catFile)
+    // if err != nil {
+	// 	// Handle error
+	// }
+    imData, imageType, err := image.Decode(catFile)
+	if err != nil {
+		// Handle error
+	}
+	
+   // fmt.Println(imData)
 
-
+   _ = imageType
     
     
     
@@ -69,7 +77,8 @@ func g10c(path string)  {
 
     
 
-    gscale := "$@B%8&WẄMÄÚŬÛŮÜŨ#*oöøäahkbdpqÞwmZŽO0QLCJUYŸXzcvunxrjft/|()1{}[]?-_+~<>i!lI½¼;:,\"^`'. "
+   // gscale := "$@B%8&WẄMÄÚŬÛŮÜŨ#*oöøäahkbdpqÞwmZŽO0QLCJUYŸXzcvunxrjft/|()1{}[]?-_+~<>i!lI½¼;:,\"^`'. "
+   gscale := "$@B%8&WẄMÄÚŬÛŮÜŨ#*oöøäahkbdpqÞwmZŽŒO0QLCJUYŸXzcvúùŭûůüűunxrjft?-_+~<>i!lI½¼;:,\"^`'. "
 
     glen := len(gscale)
 
@@ -131,7 +140,7 @@ func g10c(path string)  {
     
     var rcolors [][3] int
 
-	for i := 0;i<10;i++{
+	for i := 0;i<2;i++{
 		var gh = [3] int {rand.Intn(255),rand.Intn(255),rand.Intn(255)}
     rcolors = append(rcolors,gh)
 	}
@@ -151,7 +160,7 @@ func g10c(path string)  {
 
         for j := 0; j < len(am) - 1; j++{
         tem := am[j][0][1]
-        am[j][0][1] = am[j][len(am)-1][1]
+        am[j][0][1] = am[j][len(am[0])-1][1]
         
         
             for k := len(am[0]) - 1; k > 1; k--{
@@ -162,20 +171,67 @@ func g10c(path string)  {
             }
             am[j][1][1] = tem
         }
+
+        offrand1 := 0
+        offrand2 := 0
+        if(i == 28)  {
+            v := 0
+            if rand.Intn(2) > 0 {
+                v = 1
+        
+                v = -1
+        }
+            offrand1 = int(float64(imDatan.Bounds().Max.X)*0.35) * v
+            
+            if rand.Intn(2) > 0 {
+                v = 1
+        } else {
+                v = -1
+        }
+
+            offrand2 = int(float64(imDatan.Bounds().Max.X)*0.35) * v }
+
+            
+          
+
+           if(i == 31)  {
+            v := 0
+            if rand.Intn(1) > 0 {
+                v = 1
+        } else {
+                v = -1
+        }
+            offrand1 = int(float64(imDatan.Bounds().Max.X)*0.35) * v
+            
+            if rand.Intn(1) > 0 {
+                v = 1
+        } else {
+                v = -1
+        }
+
+            offrand2 = int(float64(imDatan.Bounds().Max.X)*0.35) * v }
+
+            if(i == 31 || i > 32){
+                offrand1 = 0
+                offrand2 = 0
+            }
+
    
 
 
             for x := imDatan.Bounds().Min.X; x < imDatan.Bounds().Max.X; x++ { 
+              
                 for y := imDatan.Bounds().Min.Y; y < imDatan.Bounds().Max.Y; y++ {
                     aR, aG, aB, aA := imDatan.At(x, y).RGBA() // no more error
                 _ ,_,_= aR, aG, aB
                 index := int((float64(am[x][y][0])/float64(glen))*float64(len(rcolors)))
 				rc  := rcolors[index]
                 // fmt.Println(index)
+				if(i<28 || i>32 || i == 30){
                if(am[x][y][1] == 0){
                 
                 pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(aA  >>  8) }, x * 14 ,14 + y *14,string(gscale[am[x][y][0]]))
-            //    pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8((aA - (aA/2)) >>  8) }, x * 14 + 5 ,19 + y *14,string(gscale[am[x][y][0]]))
+              pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(((aA/8)) >>  8) }, x * 14 + 7 ,21 + y *14,string(gscale[am[x][y][0]]))
 				
 
 
@@ -183,12 +239,22 @@ func g10c(path string)  {
                if(am[x][y][1] == 1){
                 
                 pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) }, x * 14 ,14 + y *14,string(gscale[am[x][y][0]]))
-           //     pimage(dc, color.RGBA{255, 255, 255, uint8((aA - (aA/2)) >>  8) }, x * 14 + 5 ,19 + y *14,string(gscale[am[x][y][0]]))
+                pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) }, x * 14 + 7 ,21 + y *14,string(gscale[am[x][y][0]]))
+
+               }  } else{
+                pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) }, x * 14 + offrand1 ,14 + y *14 +offrand2,string(gscale[am[x][y][0]]))
+                pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) }, x * 14 + 7 + offrand1 ,21 + y *14 + offrand2,string(gscale[am[x][y][0]]))
 
                }
-                
 
             }
+			   
+			
+
+
+                
+
+            
        
     }
 
@@ -202,6 +268,8 @@ func g10c(path string)  {
     palettedImage := image.NewPaletted(image.Rect(0, 0, bbb.Bounds().Max.X, bbb.Bounds().Max.Y), palette.Plan9)
     draw.Draw(palettedImage, palettedImage.Rect, bbb,bbb.Bounds().Min, draw.Over)
      images = append(images,palettedImage)
+	   // dc.SavePNG(fmt.Sprintf("f/a%d.png", i))
+
 }
   now := time.Now()
     name := fmt.Sprintf("out/%srbg.gif",now)
