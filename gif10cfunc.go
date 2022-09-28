@@ -198,6 +198,7 @@ func g10c(path string)  {
     dc.Clip()
     
     bbb := dc.Image()
+	// dc.SavePNG(fmt.Sprintf("f/a%d.png", i))
 
     palettedImage := image.NewPaletted(image.Rect(0, 0, bbb.Bounds().Max.X, bbb.Bounds().Max.Y), palette.Plan9)
     draw.Draw(palettedImage, palettedImage.Rect, bbb,bbb.Bounds().Min, draw.Over)

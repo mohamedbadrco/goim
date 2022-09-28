@@ -40,7 +40,7 @@ func main(){
 //    }
 
 
-    for i:= 0;i<10;i++{
+    for i:= 0;i<100;i++{
 
     files, err := ioutil.ReadDir("/home/mohmedbadrco/goimage/images")
     if err != nil {
@@ -50,7 +50,7 @@ func main(){
     for _, f := range files {
         p := fmt.Sprintf("/home/mohmedbadrco/goimage/images/%s",f.Name())
         fmt.Println(f.Name())
-             g103d(p)
+             g103d2(p)
        // gnc("/home/mohmedbadrco/goimage/images/Dino4.png")
     }
 }
