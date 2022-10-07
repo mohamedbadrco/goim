@@ -24,7 +24,7 @@ import (
 )
 
 
-func g103d2(path string)  {
+func g103d3(path string)  {
     size := 60
 
 	rand.Seed(time.Now().UnixNano())
@@ -171,13 +171,19 @@ func g103d2(path string)  {
         }
          off1 := 0
 		 off2 := 0
+		 off11 := 0
+		 off22 := 0
 		 if(rand.Intn(2) > 0){
             off1 = rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.02*14))  
 		    off2 = rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.05*14))  
+			off11 = rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.02*14))  
+		    off22 = rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.05*14))  
 			// fmt.Println(off2)
 		 }else{
 			off1 = -rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.02*14))  
-			off2 = -rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.02*14))  
+			off2 = -rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.02*14))
+			off11 = rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.02*14))  
+		    off22 = rand.Intn(int(float64(imDatan.Bounds().Max.X)*0.05*14))    
 			// fmt.Println(off2)
 			// fmt.Println(rand.Intn(2))
 		 }
@@ -195,7 +201,7 @@ func g103d2(path string)  {
 				
                if(am[x][y][1] == 0){
                 
-                pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(aA  >>  8) }, x * 14 ,14 + y *14,string(gscale[am[x][y][0]]))
+                pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(aA  >>  8) }, x * 14 + off11 ,off22 + 14 + y *14 ,string(gscale[am[x][y][0]]))
               pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(((aA/5)) >>  8) }, x * 14 + off1 ,off2 + 14 + y *14 ,string(gscale[am[x][y][0]]))
 				
 
@@ -203,7 +209,7 @@ func g103d2(path string)  {
                }
                if(am[x][y][1] == 1){
                 
-                pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) }, x * 14 ,14 + y *14,string(gscale[am[x][y][0]]))
+                pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) }, x * 14 + off11 ,off22 + 14 + y *14 ,string(gscale[am[x][y][0]]))
                 pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/5)) >>  8) }, x * 14 + off1 ,14 + off2 + y *14,string(gscale[am[x][y][0]]))
 
                }  

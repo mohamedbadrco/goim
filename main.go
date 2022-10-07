@@ -50,7 +50,7 @@ func main(){
     for _, f := range files {
         p := fmt.Sprintf("/home/mohmedbadrco/goimage/images/%s",f.Name())
         fmt.Println(f.Name())
-             g103d2(p)
+             g103d6(p)
        // gnc("/home/mohmedbadrco/goimage/images/Dino4.png")
     }
 }
