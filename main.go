@@ -1,26 +1,27 @@
 package main
 import (
-    // "fmt"
-     
+    "fmt"
+    "bufio"
 	// "image/color"
     
     // "github.com/fogleman/gg"  
     
-     // "encoding/binary"
+    //  "encoding/binary"
     // "strings"
     // "io"
-   // "github.com/andybons/gogif"
-   "fmt"
+//    "github.com/andybons/gogif"
+  // "fmt"
     "io/ioutil"
      "log"
-     //"os"
+     "image/gif"
+    "os"
 )
 func main(){
    
-//    gscale := "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
+//     gscale := "$@B%8&WMÄZO0QLCJUYX#*oahkbdpqwmzcvűزظunxrjft?-_+~<>i!lI½¼;:,\"^`'. "
 
 
-// arg := os.Args[3]
+// // arg := os.Args[3]
 
 //    glen := len(gscale)
 
@@ -34,13 +35,13 @@ func main(){
 //     dc.SetRGB(0, 0, 0)
 //     dc.Fill()
 //     pimage(dc, color.RGBA{255, 255,255, 255 }, 14 ,14,string(gscale[i]))
-   
+//     fmt.Println(i,string(gscale[i]))
 //         dc.SavePNG(fmt.Sprintf("f/%s %d.png", string(gscale[i]),i))
 
 //    }
 
 
-    for i:= 0;i<100;i++{
+    for i:= 0;i<1;i++{
 
     files, err := ioutil.ReadDir("/home/mohmedbadrco/goimage/images")
     if err != nil {
@@ -50,7 +51,18 @@ func main(){
     for _, f := range files {
         p := fmt.Sprintf("/home/mohmedbadrco/goimage/images/%s",f.Name())
         fmt.Println(f.Name())
-             g103d6(p)
+            //  g103d8(p)
+            //  g103d8(p)
+            inputFile , err := os.Open(p)
+            defer inputFile.Close()
+            if err != nil {
+                panic(err)
+            }
+        
+            r := bufio.NewReader(inputFile)
+           g,err := gif.DecodeAll(r)
+           fmt.Println(g.Image[0].Bounds().Max.X ,err)
+
        // gnc("/home/mohmedbadrco/goimage/images/Dino4.png")
     }
 }
