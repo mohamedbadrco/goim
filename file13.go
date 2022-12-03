@@ -78,18 +78,50 @@ func g103d02(path string)  {
     
 
    // gscale := "$@B%8&WẄMÄÚŬÛŮÜŨ#*oöøäahkbdpqÞwmZŽO0QLCJUYŸXzcvunxrjft/|()1{}[]?-_+~<>i!lI½¼;:,\"^`'. "
-   gscale := "$@B%8&WẄMÄŨ#*oöøäahkbdpqÞwmZŽŒO0QLCJUYŸXzcvüűضصثقفغعهخحيبلاتنمكطئءؤرلاىةوزظunxrjft?-_+~<>i!lI½¼;:,\"^`'. "
+//    gscale := "$@B%8&WẄMÄŨ#*oöøäahkbdpqÞwmZŽŒO0QLCJUYŸXzcvüűضصثقفغعهخحيبلاتنمكطئءؤرلاىةوزظunxrjft?-_+~<>i!lI½¼;:,\"^`'. "
 
-    glen := len(gscale)
+//     glen := len(gscale)
 
-     rn := rand.Intn(len(gscale) - 10)
+//      rn := rand.Intn(len(gscale) - 10)
 
-      gscale = gscale[rn:rn+1+rand.Intn(glen - rn )]
-      gscale += "  "
+//       gscale = gscale[rn:rn+1+rand.Intn(glen - rn )]
+//       gscale += "  "
+// 	// gscale = gscale[rn:]
+
+
+length := 10 + rand.Intn(50)
+  
+    ran_str := make([]byte, length)
+    offset := 0
+    // Generating Random string
+    for p := 0; p < length; p++ {
+	    randn := rand.Intn(256)
+		
+		if((randn >= 127 && randn <= 159) || (randn >= 1 && randn <= 31) ){
+		offset += 1
+		}
+		
+		if(offset > 2){
+		
+		for (randn >= 127 && randn <= 159) || (randn >= 1 && randn <= 31){
+		randn = rand.Intn(256)
+		
+		}  
+        ran_str[p] = byte(randn)
+                
+        } else{
+        ran_str[p] = byte(randn) }
+        }
+  
+    // Displaying the random string
+    str := string(ran_str)
+   // fmt.Println(str)
+	gscale := str
+      gscale += " "
 	// gscale = gscale[rn:]
 
 
-      glen = len(gscale)
+      glen := len(gscale)
     
     g := rand.Intn(20) + 10
     vis := true
@@ -112,10 +144,16 @@ func g103d02(path string)  {
                // fmt.Println(g)
             }
            // fmt.Println(int(c.Y))
+		   if(c.Y == 247){
+		   c.Y = 255
+		  // print(c.Y)
+		   }
+		  // print(c.Y)
             avg := int(((int(c.Y) * glen) / 255))
             if (avg > (glen - 1)){
                 avg = glen - 1
             }
+			
             // fmt.Println(avg)
          // k := gscale[avg];
          if(vis){
@@ -148,6 +186,7 @@ func g103d02(path string)  {
     rcolors = append(rcolors,gh)
 	}  
 	ho := 0
+	ino := 1.5
 
     var images []*image.Paletted
 
@@ -181,20 +220,48 @@ func g103d02(path string)  {
 
 		
 		v := [2]int{-1,1}
-		offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*1.2 ))*v[rand.Intn(2)] )
-		offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*1.2 ))*v[rand.Intn(2)] )
+		offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*ino ))*v[rand.Intn(2)] )
+		offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*ino ))*v[rand.Intn(2)] )
 		ho = rand.Intn(2*20)
-        if!(ho > 3){
+        if!(ho > 2){
 
             // gscale := "$@B%8&WẄMÄÚŬÛŮÜŨ#*oöøäahkbdpqÞwmZŽO0QLCJUYŸXzcvunxrjft/|()1{}[]?-_+~<>i!lI½¼;:,\"^`'. "
-            gscale = "$@B%8&WẄMÄŨ#*oöøäahkbdpqÞwmZŽŒO0QLCJUYŸXzcvüűضصثقفغعهخحيبلاتنمكطئءؤرلاىةوزظunxrjft?-_+~<>i!lI½¼;:,\"^`'. "
+            // gscale = "$@B%8&WẄMÄŨ#*oöøäahkbdpqÞwmZŽŒO0QLCJUYŸXzcvüűضصثقفغعهخحيبلاتنمكطئءؤرلاىةوزظunxrjft?-_+~<>i!lI½¼;:,\"^`'. "
          
-             glen = len(gscale)
+            //  glen = len(gscale)
          
-              rn = rand.Intn(len(gscale) - 10)
+            //   rn = rand.Intn(len(gscale) - 10)
          
-                gscale = gscale[rn:rn+1+rand.Intn(glen - rn )]
-                gscale += "  "
+            //     gscale = gscale[rn:rn+1+rand.Intn(glen - rn )]
+            offset = 0
+            length = 10 + rand.Intn(50)
+            ran_str := make([]byte, length)
+
+            for p := 0; p < length; p++ {
+                randn := rand.Intn(256)
+                
+                if((randn >= 127 && randn <= 159) || (randn >= 1 && randn <= 31) ){
+                offset += 1
+                }
+                
+                if(offset > 2){
+                
+                for (randn >= 127 && randn <= 159) || (randn >= 1 && randn <= 31){
+                randn = rand.Intn(256)
+                
+                }
+                
+                ran_str[p] = byte(randn)
+                
+                } else{
+                ran_str[p] = byte(randn) }
+            }
+          
+            // Displaying the random string
+            str = string(ran_str)
+            // fmt.Println(str)
+            gscale = str
+                gscale += " "
              // gscale = gscale[rn:]
          
          
@@ -218,21 +285,40 @@ func g103d02(path string)  {
                   
 
 		}
+       
+
+        
+        o := 0
+        var xo []  int 
+        for j := 0; j < size; j++{
+            vo := []int{-1,2,4,-3,1,3,-4,-2,-7,7,14,-14}
+           
+            if(rand.Intn(1000) < 19){
+               xo =  append(xo,14*vo[rand.Intn(6)])
+            }else{
+                xo =  append(xo,0)
+            }}
 
             for x := imDatan.Bounds().Min.X; x < imDatan.Bounds().Max.X; x++ { 
 				if(rand.Intn(20) > 15){
 					v := [2]int{-1,1}
-					offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*1.2 ))*v[rand.Intn(2)] )
-					offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*1.2 ))*v[rand.Intn(2)] )
+					offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*ino ))*v[rand.Intn(2)] )
+					offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*ino ))*v[rand.Intn(2)] )
 				}
+                if(rand.Intn(1000) < 19){
+                    vo := []int{-1,2,4,-3,1,3,-4,-2,-7,7,14,-14}
+                    o = 14*vo[rand.Intn(6)]
+                   }else{
+                       o = 0
+                   }
 				
                 for y := imDatan.Bounds().Min.Y; y < imDatan.Bounds().Max.Y; y++ {
 
 
 					if(rand.Intn(20) > 15){
 						v := [2]int{-1,1}
-						offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*1.2 ))*v[rand.Intn(2)])
-						offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*1.2 ))*v[rand.Intn(2)] )
+						offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*ino))*v[rand.Intn(2)])
+						offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)*ino ))*v[rand.Intn(2)] )
 					}
 				
 					
@@ -242,51 +328,84 @@ func g103d02(path string)  {
                 index := int((float64(am[x][y][0])/float64(glen))*float64(len(rcolors)))
 				rc  := rcolors[index]
                 // fmt.Println(index)
-				if(ho > 3 && i != 0){
-               if(am[x][y][1] == 0){
-                
-                pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(aA  >>  8) }, x * 14 ,14 + y *14,string(gscale[am[x][y][0]]))
-              pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(((aA/8)) >>  8) }, x * 14 + 7 ,21 + y *14,string(gscale[am[x][y][0]]))
-				
-
-
-               }
-               if(am[x][y][1] == 1){
-                
-                pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) }, x * 14 ,14 + y *14,string(gscale[am[x][y][0]]))
-                pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) }, x * 14 + 7 ,21 + y *14,string(gscale[am[x][y][0]]))
-
-               } } else{
-                 
-				if(am[x][y][1] == 0){
-                
-					pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(aA  >>  8) }, x * 14 + offrand1 ,14 + y *14 + offrand2,string(gscale[am[x][y][0]]))
-				  pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(((aA/8)) >>  8) }, x * 14 + 7 +offrand1,21 + y *14 + offrand2,string(gscale[am[x][y][0]]))
-					
-	
-	
-				   }
-				   if(am[x][y][1] == 1){
-					
-					pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) }, x * 14 + offrand1 ,14 + y *14 + offrand2,string(gscale[am[x][y][0]]))
-					pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) }, x * 14 + 7 +offrand1,21 + y *14 + offrand2,string(gscale[am[x][y][0]]))
-	
-				   }
-
+				if(ho > 2 && i != 0){
+                    if(rand.Intn(255) > 7){
+                        if(am[x][y][1] == 0){
+                          
+                          pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(aA  >>  8) },
+						  x * 14 + xo[y] ,o + 16 + 14 + y *14,string(gscale[am[x][y][0]]))
+                        pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), uint8(((aA/8)) >>  8) },
+						x * 14 + 7 + xo[y] ,o + 16 + 21 + y *14,string(gscale[am[x][y][0]]))
+                          
+          
+          
+                         }
+                         if(am[x][y][1] == 1){
+                          
+                          pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) },
+						  x * 14 + xo[y] ,o + 14 + 16 + y *14,string(gscale[am[x][y][0]]))
+                          pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) },
+						  x * 14 + 7 + xo[y] , o + 16 + 21 + y *14,string(gscale[am[x][y][0]]))
+          
+                         }  }else{
+                          if(am[x][y][1] == 0){
+                          
+                              rpimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]),
+							  uint8(aA  >>  8) }, x * 14 + xo[y] ,o + 16 + 14 + y *14,string(gscale[am[x][y][0]]))
+                            rpimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]),
+							uint8(((aA/8)) >>  8) }, x * 14 + 7 + xo[y] ,o + 16 + 21 + y *14,string(gscale[am[x][y][0]]))
+                              
+              
+              
+                             }
+                             if(am[x][y][1] == 1){
+                              
+                              pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) },
+							  x * 14 + xo[y] ,o + 16 + 14 + y *14,string(gscale[am[x][y][0]]))
+                              pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) },
+							  x * 14 + 7 + xo[y] , o + 16 + 21 + y *14,string(gscale[am[x][y][0]]))
+              
+                             } 
+          
+                         }
+                         } else{
+                           
+                          if(am[x][y][1] == 0){
+                          
+                              pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]),
+							  uint8(aA  >>  8) }, x * 14 + offrand1 ,16 + y *14 + offrand2,string(gscale[am[x][y][0]]))
+                            pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]),
+							uint8(((aA/8)) >>  8) }, x * 14 + 7 +offrand1,21 + y *14 + offrand2,string(gscale[am[x][y][0]]))
+                              
+              
+              
+                             }
+                             if(am[x][y][1] == 1){
+                              
+                              pimage(dc, color.RGBA{255, 255, 255, uint8(aA >>  8) },
+							  x * 14 + offrand1 ,14 + y *14 + offrand2,string(gscale[am[x][y][0]]))
+                              pimage(dc, color.RGBA{255, 255, 255, uint8(((aA/8)) >>  8) },
+							  x * 14 + 7 +offrand1,21  + y *14 + offrand2,string(gscale[am[x][y][0]]))
+              
+     }
                }
 
             }
-			   
-			
-
-
-                
-
             
        
     }
 
   _ , _ = offrand1,offrand2
+  for j := 0; j < glen; j++{
+    rc  := rcolors[int(gscale[j])*9/255]
+    if(rand.Intn(255) > 2){
+    pimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), 255 },
+	j*14 ,16,string(gscale[j])) 
+    }else
+    {  rpimage(dc, color.RGBA{uint8( rc[0]),uint8(rc[1]), uint8(rc[2]), 255 },
+	j*14 ,14,string(gscale[j]))
+    }
+    }
     delays = append(delays,7)
 
     dc.Clip()
@@ -296,7 +415,7 @@ func g103d02(path string)  {
     palettedImage := image.NewPaletted(image.Rect(0, 0, bbb.Bounds().Max.X, bbb.Bounds().Max.Y), palette.Plan9)
     draw.Draw(palettedImage, palettedImage.Rect, bbb,bbb.Bounds().Min, draw.Over)
      images = append(images,palettedImage)
-	  //  dc.SavePNG(fmt.Sprintf("f/a%d.png", i))
+	// dc.SavePNG(fmt.Sprintf("f/a%d.png", i))
 
 }
   now := time.Now()
