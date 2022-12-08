@@ -192,90 +192,103 @@ func g103d84(path string)  {
 ////////////////////////////////////////
 ////////////////////////////////////////
 /////////////////////////////////////////
-////////////////////////////////////////
+////////////////////////////////////////pp
 
 
 
-    // declare all array of linked strings
-    var st [][][2] int
-    // declare intital dircations 
-        xd := true
-        up := true
-    /// cross switch  horitanzal to virtcal 
-        cs := true
-        var sti= [4] int {10,20,30,60}
+// declare all array of linked strings
+var st [][][2] int
+// declare intital dircations 
+xd := true
+up := true
+/* cross switch  horitanzal to virtcal */
+cs := true
+var sti= [1] int {60}
 
-        for j := 0; j < 20; j++{
-            var  sst [][2] int
-            jk := sti[rand.Intn(len(sti))] 
-            var start [2] int
-            if(xd == true){
-                 start = [2] int {rand.Intn(60),rand.Intn(60)} 
-            }else{
-                 start = [2] int {rand.Intn(60),rand.Intn(60)}
-            }
-            sst = append(sst,start)
-            
-
-            for k := 1; k < jk;k++{
-                var block = [2] int {0,0}
-
-                offst := 0
-                if(cs){
-                if(rand.Intn(60) < 2){
-                    xd = !xd
-                    cs = !cs
-                }
-                }else{
-                if(rand.Intn(20) < 2){
-                    up = !(up)
-                    cs = !cs
-                } }
-
-                if(up){
-                offst = 1
-                }  else{
-                offst = -1
-                }    
-                fmt.Println(offst)
-                if(xd){
-                    block[0] = sst[k-1][0] + offst
-                    block[1] = sst[k-1][1] 
-
-                    if(block[0] < 0){
-                        block[0] = 60 + block[0]
-                    }
-                    if(block[0] >= 60){
-                        block[0] = 0
-                    }
-
-                }else{
-                    block[0] = sst[k-1][0] 
-                    block[1] = sst[k-1][1] + offst
-
-                    if(block[1] < 0){
-                        block[1] = 60 + block[1]
-                    }
-                    if(block[1] >= 60){
-                        block[1] = 0
-                    }
-                    
-                }        
-              sst = append(sst,block)
-              
-            }
-            fmt.Println(sst)
-            st = append(st,sst)
-
-        }
-        fmt.Println(st)
+for j := 0; j < 20; j++{
+var  sst [][2] int
+jk := sti[rand.Intn(len(sti))] 
+var start [2] int
+if(xd == true){
+start = [2] int {rand.Intn(60),rand.Intn(60)} 
+}else{
+start = [2] int {rand.Intn(60),rand.Intn(60)}
+}
+sst = append(sst,start)
 
 
+for k := 1; k < jk;k++{
+var block = [2] int {0,0}
+
+offst := 0
+if(cs){
+if(rand.Intn(30) < 2){
+xd = !xd
+cs = !cs
+}
+}else{
+if(rand.Intn(20) < 2){
+up = !(up)
+cs = !cs
+} }
+
+if(up){
+offst = 1
+}  else{
+offst = -1
+}    
+// fmt.Println(offst)
+if(xd){
+block[0] = sst[k-1][0] + offst
+block[1] = sst[k-1][1] 
+
+if(block[0] < 0){
+block[0] = 60 + block[0]
+}
+if(block[0] >= 60){
+block[0] = 0
+}
+
+}else{
+block[0] = sst[k-1][0] 
+block[1] = sst[k-1][1] + offst
+
+if(block[1] < 0){
+block[1] = 60 + block[1]
+}
+if(block[1] >= 60){
+block[1] = 0
+}
+
+}        
+sst = append(sst,block)
+
+}
+// fmt.Println(sst)
+st = append(st,sst)
+
+}
+ // fmt.Println(st)
+
+ratioo := 0
         //////////////////////////////
         ////////////////////////////////
         ///////////////////////////////
         ////////////////////////////////
         /////////////////////////////////
+
+          var aa [][] uint32
+        for x := imDatan.Bounds().Min.X; x < imDatan.Bounds().Max.X; x++ {
+            var suba [] uint32
+    for y := imDatan.Bounds().Min.Y; y < imDatan.Bounds().Max.Y; y++ { 
+        aR, aG, aB, aA := imDatan.At(x, y).RGBA() // no more error
+        _ ,_,_= aR, aG, aB
+        suba = append(suba,aA)
+    }
+    aa = append(aa,suba)
+}
+// fmt.Println(aa)
+
 
     for i := 0; i < size; i++{
         dc := gg.NewContext(imDatan.Bounds().Max.X * 14, (imDatan.Bounds().Max.Y)* 14)
@@ -304,7 +317,7 @@ func g103d84(path string)  {
         for j := 0; j < size; j++{
             vo := []int{-1,2,4,-3,1,3,-4,-2,-7,7,14,-14}
            
-            if(rand.Intn(1000) < 12){
+            if(rand.Intn(1000) < ratioo){
                xo =  append(xo,14*vo[rand.Intn(6)])
             }else{
                 xo =  append(xo,0)
@@ -315,14 +328,18 @@ func g103d84(path string)  {
 
         for j := 0; j < len(st); j++{
         tem := am[st[j][0][0]][st[j][0][1]][0]
+        tema := aa[st[j][0][0]][st[j][0][1]]
+        // fmt.Println(st[j])
 
         am[st[j][0][0]][st[j][0][1]][0] = am[st[j][len(st[j])-1][0]][st[j][len(st[j])-1][1]][0]
 
         for k := len(st[j]) - 1; k > 1; k--{
             am[st[j][k][0]][st[j][k][1]][0] = am[st[j][k-1][0]][st[j][k-1][1]][0]
+            aa[st[j][k][0]][st[j][k][1]] = aa[st[j][k-1][0]][st[j][k-1][1]]
            }
 
             am[st[j][1][0]][st[j][1][1]][0] =  tem 
+            aa[st[j][1][0]][st[j][1][1]] =  tema
         }
 
         offrand1 := 0
@@ -340,7 +357,7 @@ func g103d84(path string)  {
 					offrand1 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)))*v[rand.Intn(2)] )
 					offrand2 = (rand.Intn(int(float64(imDatan.Bounds().Max.X)))*v[rand.Intn(2)] )
 				}
-                if(rand.Intn(1000) < 12){
+                if(rand.Intn(1000) < ratioo){
                     vo := []int{-1,2,4,-3,1,3,-4,-2,-7,7,14,-14}
                     o = 14*vo[rand.Intn(6)]
                    }else{
@@ -358,8 +375,8 @@ func g103d84(path string)  {
 					}
 				
 					
-                    aR, aG, aB, aA := imDatan.At(x, y).RGBA() // no more error
-                _ ,_,_= aR, aG, aB
+                     aA := aa[x][y] // no more error
+                
                 index := int((float64(am[x][y][0])/float64(glen))*float64(len(rcolors)))
 				rc  := rcolors[index]
                 // fmt.Println(index)
@@ -452,7 +469,7 @@ func g103d84(path string)  {
     palettedImage := image.NewPaletted(image.Rect(0, 0, bbb.Bounds().Max.X, bbb.Bounds().Max.Y), palette.Plan9)
     draw.Draw(palettedImage, palettedImage.Rect, bbb,bbb.Bounds().Min, draw.Over)
      images = append(images,palettedImage)
-	   // dc.SavePNG(fmt.Sprintf("f/a%d.png", i))
+	    dc.SavePNG(fmt.Sprintf("f/a%d.png", i))
 
 }
   now := time.Now()
