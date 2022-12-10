@@ -175,9 +175,33 @@ func g103d8(path string)  {
 	
 	numc := 10 + rand.Intn(10)
 
+    randa := rand.Intn(10)
+
 	for i := 0;i<numc;i++{
-		var gh = [3] int {rand.Intn(255),rand.Intn(255),rand.Intn(255)}
-    rcolors = append(rcolors,gh)
+        if(randa < 2){
+            var gh = [3] int {rand.Intn(255),rand.Intn(155),rand.Intn(155)}
+            rcolors = append(rcolors,gh)
+        }
+        if(randa < 4 && randa > 2){
+            var gh = [3] int {rand.Intn(155),rand.Intn(155),rand.Intn(255)}
+            rcolors = append(rcolors,gh)
+        }
+        if(randa < 6 && randa > 4){
+            var gh = [3] int {rand.Intn(155),rand.Intn(255),rand.Intn(155)}
+            rcolors = append(rcolors,gh)
+        }
+        if(randa < 8 && randa > 6){
+            var gh = [3] int {rand.Intn(155),rand.Intn(155),rand.Intn(155)}
+            rcolors = append(rcolors,gh)
+        }
+        if(randa < 11 && randa > 8){
+            var gh = [3] int {rand.Intn(255),rand.Intn(255),rand.Intn(255)}
+            rcolors = append(rcolors,gh)
+        }else{
+            var gh = [3] int {rand.Intn(255),rand.Intn(255),rand.Intn(255)}
+            rcolors = append(rcolors,gh)
+        }
+    
 	}
 
     var images []*image.Paletted
