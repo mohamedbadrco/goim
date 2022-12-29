@@ -31,7 +31,7 @@ import (
 //     image.RegisterFormat("jpeg", "jpeg", jpeg.Decode, jpeg.DecodeConfig)
 // }
 
-func g103d8fm(path string)  {
+func g103d8f(path string)  {
     size := 60
 
 	rand.Seed(time.Now().UnixNano())
@@ -250,274 +250,6 @@ func g103d8fm(path string)  {
 
         }
 	}
-   // numaA := 0
-//     for x := imDatan.Bounds().Min.X; x < imDatan.Bounds().Max.X; x++ {
-// for y := imDatan.Bounds().Min.Y; y < imDatan.Bounds().Max.Y; y++ {
-//    // aR, aG, aB, aA := imDatan.At(x, y).RGBA() // no more error
-//    // _ ,_,_= aR, aG, aB
-//     if(true){
-//      numaA += 1
-//     }
-// }}
-//fmt.Println(numaA)
-////////////////////////////////////////
-////////////////////////////////////////
-////////////////////////////////////////
-////////////////////////////////////////
-
-cy := ((( (imDatan.Bounds().Max.Y * imDatan.Bounds().Max.X))/60)) / 2
-fmt.Println(cy)
-
-// declare all array of linked strings
-var st [][][2] int
-// declare intital dircations 
-xd := true
-up := true
-/* cross switch  horitanzal to virtcal */
-cs := true
-var sti= [1] int {60}
-
-
-
-for j := 0; j <  cy ; j++{
-    var  sst [][2] int
-    jk := sti[rand.Intn(len(sti))] 
-    var start [2] int
-    if(xd == true){
-    start = [2] int {rand.Intn(60),rand.Intn(60)} 
-    }else{
-    start = [2] int {rand.Intn(60),rand.Intn(60)}
-    }
-  
-
-
-
-
-
-    // aR, aG, aB, aA := imDatan.At(start[0], start[1]).RGBA() // no more error
-    // _, _ ,_,_= aR, aG, aB , aA
-    // for(true){
-    //     start[0] =   rand.Intn(60)
-    //     start[1] =   rand.Intn(60)
-    //     aR, aG, aB, aA = imDatan.At(start[0], start[1]).RGBA() // no more erro
-    // }
-    sst = append(sst,start)
-
-
-
-    
-   // ofind := 1
-    for k := 1; k < jk;k++{
-    var block = [2] int {0,0}
-    
-    
-    
-    offst := 0
-    if(cs){
-    if(rand.Intn(30) < 2){
-    xd = !xd
-    cs = !cs
-    }
-    }else{
-    if(rand.Intn(20) < 2){
-    up = !(up)
-    cs = !cs
-    } }
-    
-    if(up){
-    offst = 1 
-    }  else{
-    offst = -1 
-    }    
-    // fmt.Println(offst)
-    
-    if(xd){
-    block[0] = sst[len(sst) - 1][0] + offst
-    block[1] = sst[len(sst) - 1][1] 
-    
-    if(block[0] < 0){
-    block[0] = 60 + block[0]
-    }
-    if(block[0] >= 60){
-    block[0] = 0
-    }
-    
-    }else{
-    block[0] = sst[len(sst) - 1][0] 
-    block[1] = sst[len(sst) - 1][1] + offst
-    
-    if(block[1] < 0){
-    block[1] = 60 + block[1]
-    }
-    if(block[1] >= 60){
-    block[1] = 0
-    }} 
-    
-    /////////////////////////////////////////////////////////////////////////////// 
-    ///////////////////////////////////////////////////////////////////////////////
-
-
-    // aR, aG, aB, aA := imDatan.At(block[0], block[1]).RGBA() // no more error
-    // _, _ ,_,_= aR, aG, aB , aA
-    if(true){
-    if(!(isAvailable3(st,block) || isAvailable(sst,block) )){
-        sst = append(sst,block)
-        }}else{
-
-            // aR, aG, aB, aA = imDatan.At(block[0], block[1] + 1).RGBA() // no more error
-            // _, _ ,_,_= aR, aG, aB , aA
-
-            if(!(block[0] == sst[len(sst) - 1][0] &&
-            block[1] + 1 == sst[len(sst) - 1][1])){
-                tembl := block[1] 
-                block[1] += 1
-                if(isAvailable3(st,block) || isAvailable(sst,block)){
-                    block[1] = tembl
-                }else{
-                    sst = append(sst,block)
-                    continue
-                }}
-
-            // aR, aG, aB, aA = imDatan.At(block[0] + 1, block[1]).RGBA() // no more error
-            // _, _ ,_,_= aR, aG, aB , aA
-            if(!(block[0] + 1 == sst[len(sst) - 1][0] &&
-             block[1] == sst[len(sst) - 1][1]) ){
-                tembl := block[0] 
-                block[0] += 1
-                if(isAvailable3(st,block) || isAvailable(sst,block) ){
-                    block[0] = tembl
-                }else{
-                    sst = append(sst,block)
-                    continue
-                }}
-
-            // aR, aG, aB, aA = imDatan.At(block[0] + 1, block[1] + 1).RGBA() // no more error
-            // _, _ ,_,_= aR, aG, aB , aA
-            if(!(block[0] + 1 == sst[len(sst) - 1][0] &&
-            block[1] + 1 == sst[len(sst) - 1][1])){
-                tembl := block[0] 
-                tembl1 := block[1] 
-                block[0] += 1
-                block[1] += 1
-                if(isAvailable3(st,block) || isAvailable(sst,block) ){
-                    block[0] = tembl
-                    block[1] = tembl1
-                }else{
-                    sst = append(sst,block)
-                    continue
-                }}
-
-
-                for x := block[0]; x < imDatan.Bounds().Max.X; x++ {
-                    var  point = [2] int {0,0}
-                    for y := block[1]; y < imDatan.Bounds().Max.Y; y++ { 
-                         point[0] = x
-                         point[1] = y
-                        // aR, aG, aB, aA := imDatan.At(x, y).RGBA() // no more error
-                        // _, _ ,_,_= aR, aG, aB , aA
-                        if(true){
-            
-                        if !(isAvailable3(st,point) || isAvailable(sst,block)) {
-                            sst = append(sst,point)
-                            break
-                        }
-                        
-                    }
-                }
-                if !(isAvailable3(st,point) || isAvailable(sst,block)) {
-                    // sst = append(sst,point)
-                    break
-                }
-            }
-        }
-
-    // else{
-    //     if(jk< (imDatan.Bounds().Max.X * imDatan.Bounds().Max.Y)){
-    //         jk++
-    //        // fmt.Println(k,jk)
-    //     }
-    // }
-    
-    // // }else{
-        
-    //     if !(isAvailable(sst,block) || (uint8(aA  >>  8) <= 0)){
-    //     //    // block = [2] int {rand.Intn(60),rand.Intn(60)}
-    //     //     block[0] =   rand.Intn(60)
-    //     //     block[1] =   rand.Intn(60)
-    //     //     aR, aG, aB, aA = imDatan.At(block[0], block[1]).RGBA() // no more error
-    //     //     _, _ ,_,_= aR, aG, aB , aA
-    //     //     //fmt.Println("HI")
-    //     //     // fmt.Println(block)
-    //     //     // fmt.Println(isAvailable(sst,block) || (uint8(aA  >>  8) <= 0))
-    //     //     // fmt.Println(j,k)
-    //     //     // if(!(isAvailable(sst,block) || (uint8(aA  >>  8) <= 0))){
-    //     //     //     break
-    //     //     // }
-
-
-    //     }
-    //     sst = append(sst,block)
-    //    // fmt.Println("append")ac
-    // }
-  // fmt.Println(j,k)
-    
-    }
-    //fmt.Println("out K ")
-     //fmt.Println(sst)
-    if(isAvailable2(st,sst)){
-        j--
-       // fmt.Println("j++")
-
-    }else{
-        st = append(st,sst)
-       // fmt.Println(len(sst))
-      // fmt.Println("append2")
-    
-    }
-    
-    //fmt.Println(j)
-}
-    
-      //fmt.Println(st)
-     
-   // fmt.Println(st)
-
-for j := 0; j <  cy ; j++{
-    var  sst [][2] int
-
-    
-    for x := imDatan.Bounds().Min.X; x < imDatan.Bounds().Max.X; x++ {
-        for y := imDatan.Bounds().Min.Y; y < imDatan.Bounds().Max.Y; y++ { 
-            var  point = [2] int {x,y} 
-            // aR, aG, aB, aA := imDatan.At(x, y).RGBA() // no more error
-            // _, _ ,_,_= aR, aG, aB , aA
-            if(true){
-
-            if !isAvailable3(st,point) {
-                sst = append(sst,point)
-            }
-        }
-            if(len(sst) >= 60){
-                break
-            }
-        }
-        if(len(sst) >= 60){
-            //  fmt.Println(sst)
-            break
-            
-        }
-    }
-        st = append(st,sst)
-}
-fmt.Println("m Done")
-//fmt.Println(st)
-
-//ratioo := 0
-////////////////////////////////
-////////////////////////////////
-////////////////////////////////
-////////////////////////////////
-////////////////////////////////
     ra := rcolors[rand.Intn(len(rcolors))]
       _ = ra
     var images []*image.Paletted
@@ -539,19 +271,19 @@ fmt.Println("m Done")
     }
 
 
-        // for j := 0; j < len(am) - 1; j++{
-        // tem := am[j][0][1]
-        // am[j][0][1] = am[j][len(am[0])-1][1]
+        for j := 0; j < len(am) - 1; j++{
+        tem := am[j][0][1]
+        am[j][0][1] = am[j][len(am[0])-1][1]
         
         
-        //     for k := len(am[0]) - 1; k > 1; k--{
-        //         // fmt.Println(am[j][k][1],am[j][k-1][1])
-        //        am[j][k][1] = am[j][k-1][1]
-        //       // fmt.Println(am[j][k])
+            for k := len(am[0]) - 1; k > 1; k--{
+                // fmt.Println(am[j][k][1],am[j][k-1][1])
+               am[j][k][1] = am[j][k-1][1]
+              // fmt.Println(am[j][k])
                 
-        //     }
-        //     am[j][1][1] = tem
-        // }
+            }
+            am[j][1][1] = tem
+        }
 
         var xo []  int 
         for j := 0; j < size; j++{
@@ -564,30 +296,6 @@ fmt.Println("m Done")
             }
 
         }
-
-        for j := 0; j < len(st); j++{
-            // stroe first element in tem 
-            tem := am[st[j][0][0]][st[j][0][1]][1]
-           // tema:= aa[st[j][0][0]][st[j][0][1]]
-            
-    
-            am[st[j][0][0]][st[j][0][1]][1] = am[st[j][len(st[j])-1][0]][st[j][len(st[j])-1][1]][1]
-           // aa[st[j][0][0]][st[j][0][1]] = aa[st[j][len(st[j])-1][0]][st[j][len(st[j])-1][1]]
-    
-            
-    
-            for k := len(st[j]) - 1; k > 1; k--{
-                am[st[j][k][0]][st[j][k][1]][1] = am[st[j][k-1][0]][st[j][k-1][1]][1]
-               // aa[st[j][k][0]][st[j][k][1]] = aa[st[j][k-1][0]][st[j][k-1][1]]
-              // fmt.Println("HI")
-               }
-                
-               if(len(st[j]) > 1){
-                am[st[j][1][0]][st[j][1][1]][1] = tem 
-              //  aa[st[j][1][0]][st[j][1][1]] = tema 
-             }
-            }
-    
 
         offrand1 := 0
         offrand2 := 0
@@ -609,7 +317,7 @@ fmt.Println("m Done")
             o = 14*vo[rand.Intn(6)]
             }else{
                 o = 0
-            }   
+            }
         
         
         for y := imDatan.Bounds().Min.Y ; y < imDatan.Bounds().Max.Y; y++ {
@@ -628,6 +336,7 @@ fmt.Println("m Done")
         rc  := rcolors[index]
         // fmt.Println(index)
         // i<29 || i>31 
+        // fmt.Println(uint8(aA  >>  8))
         if(true){
             if(rand.Intn(255) > 2){
                 if(am[x][y][1] == 0){
